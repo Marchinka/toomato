@@ -1,10 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Timer } from './Pages/Timer';
-import { Home } from './Pages/Home';
-import { ProviderWrapper } from './Templates/ProviderWrapper';
+import {  Route } from "react-router-dom";
+import { Timer } from './Components/Pages/Timer';
+import { Home } from './Components/Pages/Home';
+import { ProviderWrapper } from './Components/Templates/ProviderWrapper';
 
 
 function App() {

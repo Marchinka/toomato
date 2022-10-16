@@ -1,10 +1,17 @@
-import { Button, Card, Heading } from "rebass"
+/** @jsxImportSource theme-ui */
+
+import { Button } from "theme-ui"
 
 export const Home = () => {
     return <div>
-                <Button>Home</Button>
-                <Card width={256}>
-                    <Heading>Card</Heading>
-                </Card>
+                <h1
+                    sx={{
+                        color: 'green',
+                    }}>
+                    Home
+                </h1>
+                <Button mr={2}>Beep</Button>
+                <Button variant='secondary'>Boop</Button>
+                <Button ml={2} hidden>Hidden</Button>
             </div>
 }
