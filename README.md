@@ -4,6 +4,7 @@ Toomato is a time manager application for achiving great results!
 
 ## Backlog
 
+- Create react app port
 - React Rooter
 - Styled components
 - Project structure with atomic design

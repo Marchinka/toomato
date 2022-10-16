@@ -4,15 +4,14 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Timer } from './Pages/Timer';
 import { Home } from './Pages/Home';
+import { ProviderWrapper } from './Templates/ProviderWrapper';
 
 
 function App() {
-  return (<BrowserRouter>
-            <Routes>
+  return (<ProviderWrapper>
               <Route path="/" element={<Home />} />
               <Route path="timer" element={<Timer />} />
-            </Routes>
-          </BrowserRouter>);
+          </ProviderWrapper>);
 }
 
 export default App;
