@@ -8,6 +8,8 @@ interface Props {
 
 export const SummaryList = (props: Props) => {
     return  <Box sx={{paddingLeft: "12px", paddingRight: "12px"}}>
-                {(props.summary || []).map(summaryItem => <SummaryLine key={summaryItem.category.id} toomatoSummary={summaryItem} />)}
+                {(props.summary || []).map(summaryItem => {
+                    return <SummaryLine key={summaryItem.category.id} toomatoSummary={summaryItem} />
+                })}
             </Box>
 };

@@ -29,6 +29,6 @@ export const TimerPage = () => {
                                 })}
                             </div>
                         </div>}
-                footer={<div>Buttons</div>}
+                footer={<></>}
             />;
 }

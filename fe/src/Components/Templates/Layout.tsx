@@ -25,7 +25,13 @@ const contentCss = {
 const footerCss = {
     bottom: 0,
     left: 0,
-    position: "fixed"
+    position: "fixed",
+    display:"flex", 
+    height: "122px",
+    width: "100vw",
+    alignItems:"center", 
+    justifyContent:"center",
+    background: "linear-gradient(180deg, rgba(225, 222, 222, 0) 0%, #E1DEDE 58.85%)"
 };
 
 export const Layout = (props: Props) => {

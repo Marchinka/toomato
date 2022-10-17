@@ -60,7 +60,7 @@ export const THEME = createTheme({
       default: NEUTRALS.B100
     },
     primary: {
-      main: REDS.R300
+      main: NEUTRALS.B900
     },
     secondary: {
       main: GREENS.G300,
@@ -76,5 +76,15 @@ export const THEME = createTheme({
       secondary: NEUTRALS.B600
     }
   },
-  neutrals: {}
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '12px',
+          boxShadow: "0px 4px 4px 0px #00000040"
+
+        },
+      },
+    },
+  },
 } as any);
