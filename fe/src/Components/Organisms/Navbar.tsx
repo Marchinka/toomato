@@ -3,6 +3,7 @@ import { Box, Button, IconButton, SxProps, Theme } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { NEUTRALS } from "../../Theme/Colors";
+import { useNavigate } from "react-router-dom";
 
 const style: SxProps<Theme> = {
     padding: "12px 8px 12px 8px",
@@ -14,8 +15,10 @@ const style: SxProps<Theme> = {
 }
 
 export const Navbar = () => {
+    let navigate = useNavigate();
+
     return <Box sx={style}>
-                    <IconButton size="large">
+                    <IconButton size="large" onClick={() => navigate(-1)}>
                         <ArrowBackIcon fontSize="large" />
                     </IconButton>
                     <ToomatoLogo />
