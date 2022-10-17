@@ -21,7 +21,7 @@ export const THEME: Theme = {
         '&:hover': {
           cursor: 'pointer'
         }
-      },
+      }, 
       secondary: {
         '&:hover': {
           cursor: 'pointer'
