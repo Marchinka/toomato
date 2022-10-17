@@ -10,7 +10,7 @@ const LogoTomato = styled(TomatoColor)({ height: "43px" });
 
 const containerStyles = { marginRight: "10px" }
 
-const Section = (props: {children: React.ReactNode}) => {
+const SectionOfHome = (props: {children: React.ReactNode}) => {
     return <Box sx={{paddingTop: "16px", paddingBottom: "16px"}}>{props.children}</Box> 
 };
 
@@ -33,7 +33,7 @@ export const HomeSummary = () => {
     }, []);
 
     return  <Box>
-                <Section>
+                <SectionOfHome>
                     <Flex type="packed">
                         <Box sx={containerStyles}>
                             <LogoTomato />
@@ -43,21 +43,21 @@ export const HomeSummary = () => {
                         </Box>
                         <Typography variant="h5">Marcello</Typography>
                     </Flex>
-                </Section>
-                <Section>
+                </SectionOfHome>
+                <SectionOfHome>
                     <Typography variant="body1" sx={subTitlesStyles} color="text.secondary">Today's Tomatoes</Typography>
-                </Section>
-                <Section>
+                </SectionOfHome>
+                <SectionOfHome>
                     <SummaryList summary={todaySummary}/>
-                </Section>
-                <Section>
+                </SectionOfHome>
+                <SectionOfHome>
                     <Divider />
-                </Section>
-                <Section>
+                </SectionOfHome>
+                <SectionOfHome>
                     <Typography variant="body1" sx={subTitlesStyles} color="text.secondary">Thi week's Tomatoes</Typography>
-                </Section>
-                <Section>
+                </SectionOfHome>
+                <SectionOfHome>
                     <SummaryList summary={weekSummary}/>
-                </Section>
+                </SectionOfHome>
             </Box>
 };
