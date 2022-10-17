@@ -1,8 +1,14 @@
 /** @jsxImportSource theme-ui */
 
 import { Button } from "theme-ui"
+import { Navbar } from "../Organisms/Navbar";
+import { Layout } from "../Templates/Layout"
 
-export const Home = () => {
+export const Homepage = () => {
+    return <Layout
+                header={<Navbar/>}
+                content={<div>Prova</div>}
+            />;
     return <div>
                 <h1
                     sx={{
