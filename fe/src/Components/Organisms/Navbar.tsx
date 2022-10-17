@@ -1,11 +1,26 @@
 import { ToomatoLogo } from "../Molecules/ToomatoLogo";
-import { BiArrowBack, BiUserCircle } from "react-icons/bi";
-import { Box, Button } from "@mui/material";
+import { Box, Button, IconButton, SxProps, Theme } from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { NEUTRALS } from "../../Theme/Colors";
+
+const style: SxProps<Theme> = {
+    padding: "12px 0px 12px 0px",
+    display: "flex",
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    background: NEUTRALS.WHITE,
+    borderBottom: `1px solid ${NEUTRALS.B400}`
+}
 
 export const Navbar = () => {
-    return <Box pt={"16px"} pb={"16px"} pl={"24px"} pr={"24px"}>
-                    <Button><BiArrowBack/></Button>
+    return <Box sx={style}>
+                    <IconButton size="large">
+                        <ArrowBackIcon fontSize="large" />
+                    </IconButton>
                     <ToomatoLogo />
-                    <Button><BiUserCircle /></Button>
+                    <IconButton size="large">
+                        <AccountCircleIcon  fontSize="large" />
+                    </IconButton>
             </Box>
 };

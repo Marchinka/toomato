@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { NEUTRALS } from "../../Theme/Colors";
 
 interface Props {
@@ -27,6 +27,8 @@ const footerCss = {
 };
 
 export const Layout = (props: Props) => {
+    const theme = useTheme();
+
     return  <Box>
                 <Box sx={headerCss}>
                     {props.header}
