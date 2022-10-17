@@ -13,4 +13,27 @@ export const THEME: Theme = {
       primary: GREENS.G500,
       white: NEUTRALS.WHITE
     },
+    buttons: {
+      '&:hover': {
+        cursor: 'pointer'
+      },
+      primary: {
+        '&:hover': {
+          cursor: 'pointer'
+        }
+      },
+      secondary: {
+        '&:hover': {
+          cursor: 'pointer'
+        }
+      }, 
+      transparent: {
+        background: "transparent",
+        borderRadius: "50%",
+        color: NEUTRALS.B700,
+        '&:hover': {
+          cursor: 'pointer'
+        }
+      }
+    }
 }

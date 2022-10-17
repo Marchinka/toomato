@@ -4,7 +4,7 @@ import {  Route } from "react-router-dom";
 import { TimerPage } from './Components/Pages/TimerPage';
 import { Homepage } from './Components/Pages/Homepage';
 import { ProviderWrapper } from './Utils/ProviderWrapper';
-
+import './App.css';
 
 function App() {
   return (<ProviderWrapper>
