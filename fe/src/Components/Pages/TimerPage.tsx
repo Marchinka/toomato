@@ -1,5 +1,5 @@
+import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Button } from "theme-ui";
 import { Category } from "../../Models/Category";
 import { useAppStore } from "../../Store/AppStore";
 import { Navbar } from "../Organisms/Navbar";

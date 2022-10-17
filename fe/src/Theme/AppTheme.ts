@@ -1,39 +1,17 @@
-import { Theme } from "theme-ui";
-import { NEUTRALS, GREENS } from "./Colors";
+import { red } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
 
-export const THEME: Theme = {
-    fonts: {
-      body: 'system-ui, sans-serif',
-      heading: '"Avenir Next", sans-serif',
-      monospace: 'Menlo, monospace',
+// Create a theme instance.
+export const THEME = createTheme({
+  palette: {
+    primary: {
+      main: '#556cd6',
     },
-    colors: {
-      text: '#000',
-      background: NEUTRALS.B100,
-      primary: GREENS.G500,
-      white: NEUTRALS.WHITE
+    secondary: {
+      main: '#19857b',
     },
-    buttons: {
-      '&:hover': {
-        cursor: 'pointer'
-      },
-      primary: {
-        '&:hover': {
-          cursor: 'pointer'
-        }
-      }, 
-      secondary: {
-        '&:hover': {
-          cursor: 'pointer'
-        }
-      }, 
-      transparent: {
-        background: "transparent",
-        borderRadius: "50%",
-        color: NEUTRALS.B700,
-        '&:hover': {
-          cursor: 'pointer'
-        }
-      }
-    }
-}
+    error: {
+      main: "#CD0E0E",
+    },
+  },
+});

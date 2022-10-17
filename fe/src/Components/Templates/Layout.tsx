@@ -1,6 +1,4 @@
-/** @jsxImportSource theme-ui */
-
-import { ThemeUIStyleObject } from "theme-ui";
+import { Box } from "@mui/material";
 import { NEUTRALS } from "../../Theme/Colors";
 
 interface Props {
@@ -9,7 +7,7 @@ interface Props {
     footer?: React.ReactNode;
 }
 
-const headerCss : ThemeUIStyleObject = {
+const headerCss = {
     top: 0,
     left: 0,
     position: "fixed",
@@ -18,26 +16,26 @@ const headerCss : ThemeUIStyleObject = {
     zIndex: 64
 };
 
-const contentCss : ThemeUIStyleObject = {
+const contentCss = {
     marginTop: headerCss.height
 };
 
-const footerCss : ThemeUIStyleObject = {
+const footerCss = {
     bottom: 0,
     left: 0,
     position: "fixed"
 };
 
 export const Layout = (props: Props) => {
-    return  <div>
-                <div sx={headerCss}>
+    return  <Box>
+                <Box sx={headerCss}>
                     {props.header}
-                </div>
-                <div sx={contentCss}>
+                </Box>
+                <Box sx={contentCss}>
                     {props.content}
-                </div>
-                {props.footer && <div sx={footerCss}>
+                </Box>
+                {props.footer && <Box sx={footerCss}>
                     {props.footer}
-                </div>}
-            </div>
+                </Box>}
+            </Box>
 };
