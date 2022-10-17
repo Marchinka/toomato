@@ -21,15 +21,15 @@ let categories : Category[] = [
 
 let todaySummary: ToomatoSummary[] = [
     { category: DESIGN, toomatoCount: 3},
-    { category: YOGA, toomatoCount: 1},
-    { category: REACT, toomatoCount: 2}
+    { category: REACT, toomatoCount: 2},
+    { category: YOGA, toomatoCount: 1}
 ];
 
 let weekSummary: ToomatoSummary[] = [
     { category: DESIGN, toomatoCount: 12},
+    { category: JAPANESE, toomatoCount: 8},
     { category: YOGA, toomatoCount: 5},
-    { category: ENGLISH, toomatoCount: 1},
-    { category: JAPANESE, toomatoCount: 8}
+    { category: ENGLISH, toomatoCount: 1}
 ];
 
 const AppStore = {

@@ -1,6 +1,6 @@
 import { red } from '@mui/material/colors';
 import { createTheme } from '@mui/material/styles';
-import { NEUTRALS } from './Colors';
+import { GREENS, NEUTRALS, REDS } from './Colors';
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -40,7 +40,19 @@ export const THEME = createTheme({
     },
     h5: {
       color: NEUTRALS.B700,
-      fontFamily: TITLE_FONT
+      fontFamily: BODY_FONT
+    },
+    h6: {
+      color: NEUTRALS.B600,
+      fontFamily: BODY_FONT
+    },
+    body1: {
+      color: NEUTRALS.B900,
+      fontFamily: BODY_FONT
+    },
+    body2: {
+      color: NEUTRALS.B600,
+      fontFamily: BODY_FONT
     },
   },
   palette: {
@@ -48,18 +60,21 @@ export const THEME = createTheme({
       default: NEUTRALS.B100
     },
     primary: {
-      main: '#556cd6'
+      main: REDS.R300
     },
     secondary: {
-      main: '#19857b',
+      main: GREENS.G300,
     },
     error: {
       main: "#CD0E0E",
     },
+    subtitle: {
+      main: NEUTRALS.B600
+    },
     text: {
       primary: NEUTRALS.B900,
-      secondary: NEUTRALS.B500
+      secondary: NEUTRALS.B600
     }
   },
   neutrals: {}
-});
+} as any);

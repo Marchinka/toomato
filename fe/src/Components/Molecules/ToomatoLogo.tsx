@@ -1,11 +1,6 @@
 import { Box, styled, SxProps, Theme, Typography } from "@mui/material";
+import { Flex } from "../../Utils/Flex";
 import {ReactComponent as TomatoColor} from "../Atoms/TomatoColor.svg"
-
-const containerStyle: SxProps<Theme> = {
-    display: "flex",
-    justifyContent: 'flex-start',
-    alignItems: 'center'
-}
 
 const LogoTomato = styled(TomatoColor)({
     height: "20px",
@@ -13,10 +8,10 @@ const LogoTomato = styled(TomatoColor)({
 });
 
 export const ToomatoLogo = () => {
-    return <Box sx={containerStyle}>
+    return <Flex type="packed">
                 <Typography variant="h4">T</Typography>
                 <LogoTomato />
                 <LogoTomato />
                 <Typography variant="h4">mato</Typography>
-            </Box>
+            </Flex>
 };

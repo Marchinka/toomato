@@ -7,17 +7,19 @@ interface Props {
     footer?: React.ReactNode;
 }
 
+
 const headerCss = {
     top: 0,
     left: 0,
     position: "fixed",
-    height: "64px",
+    height: "84px",
     width: "100vw",
     zIndex: 64
 };
 
 const contentCss = {
-    marginTop: headerCss.height
+    marginTop: headerCss.height,
+    padding: "0px 24px 0px 24px"
 };
 
 const footerCss = {

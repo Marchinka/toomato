@@ -5,7 +5,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { NEUTRALS } from "../../Theme/Colors";
 
 const style: SxProps<Theme> = {
-    padding: "12px 0px 12px 0px",
+    padding: "12px 8px 12px 8px",
     display: "flex",
     justifyContent: 'space-between',
     alignItems: 'center',
