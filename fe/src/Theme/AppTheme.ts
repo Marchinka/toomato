@@ -1,4 +1,5 @@
 import { Theme } from "theme-ui";
+import { NEUTRALS, GREENS } from "./Colors";
 
 export const THEME: Theme = {
     fonts: {
@@ -8,7 +9,8 @@ export const THEME: Theme = {
     },
     colors: {
       text: '#000',
-      background: 'red',
-      primary: 'tomato',
+      background: NEUTRALS.B100,
+      primary: GREENS.G500,
+      white: NEUTRALS.WHITE
     },
 }

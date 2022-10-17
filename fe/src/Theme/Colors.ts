@@ -11,14 +11,14 @@ export const NEUTRALS = {
     WHITE: "#FFFFFF"
 };
 
-export const PRIMARY = {
+export const REDS = {
     R500: "#CD0E0E",
     R300: "#D75F5F",
     R100: "#DD8C8C",
 };
 
-export const SECONDARY = {
-    R500: "#0ECD7D",
-    R300: "#6FDEA9",
-    R100: "#AEE3C7",
+export const GREENS = {
+    G500: "#0ECD7D",
+    G300: "#6FDEA9",
+    G100: "#AEE3C7",
 };

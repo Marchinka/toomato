@@ -1,3 +1,5 @@
+import { Box } from "theme-ui";
+
 export const Navbar = () => {
-    return <></>
+    return <Box>Navbar</Box>
 };
