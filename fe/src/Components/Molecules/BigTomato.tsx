@@ -1,6 +1,9 @@
 import {ReactComponent as TomatoColor} from "../Atoms/TomatoColor.svg"
 import {ReactComponent as TomatoPaused} from "../Atoms/TomatoPaused.svg"
 import {ReactComponent as TomatoInactive} from "../Atoms/TomatoInactive.svg"
+// import {ReactComponent as TomatoColor} from "../Atoms/BigTomatoColor.svg"
+// import {ReactComponent as TomatoPaused} from "../Atoms/BigTomatoPaused.svg"
+// import {ReactComponent as TomatoInactive} from "../Atoms/BigTomatoInactive.svg"
 import { styled } from "@mui/material";
 
 const ColorLogoTomato = styled(TomatoColor)({

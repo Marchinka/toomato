@@ -10,12 +10,17 @@ import ReplayIcon from '@mui/icons-material/Replay';
 import StopIcon from '@mui/icons-material/Stop';
 import PauseIcon from '@mui/icons-material/Pause';
 import { Button } from "@mui/material";
+import { TimerTemplate } from "../Templates/TimerTemplate";
 
 enum TimerPhase {
     CategoryChoice,
     ReadyToStart,
     InProgress,
     Completed
+}
+
+const buttonStyle = {
+    width: "116px"
 }
 
 export const Timer = () => {
@@ -58,10 +63,10 @@ export const Timer = () => {
         case TimerPhase.ReadyToStart:
             return  <Layout
                         header={<Navbar variant="color"/>}
-                        content={<>
+                        content={<TimerTemplate>
                                     <BigTomato variant="inactive"/>
-                                </>}
-                        footer={<Button variant="contained" 
+                                </TimerTemplate>}
+                        footer={<Button variant="contained" size="large" sx={buttonStyle}
                                     onClick={() => start()}
                                     endIcon={<PlayArrowIcon />}
                                 >Play</Button>}
@@ -69,21 +74,21 @@ export const Timer = () => {
         case TimerPhase.InProgress:
             return  <Layout
                         header={<Navbar variant={running ? "color" : "paused"}/>}
-                        content={<>
+                        content={<TimerTemplate>
                                     <BigTomato variant={running ? "color" : "paused"}/>
-                                </>}
+                                </TimerTemplate>}
                         footer={<>
-                                    <Button variant="outlined" 
+                                    <Button variant="outlined" size="large" sx={buttonStyle}
                                         onClick={() => stop()}
                                         endIcon={<StopIcon />}
                                     >Stop</Button>
                                     {running ? 
-                                        <Button variant="outlined" 
+                                        <Button variant="outlined" size="large" sx={buttonStyle}
                                             onClick={() => pause()}
                                             endIcon={<PauseIcon />}
                                         >Pause</Button>
                                         :
-                                        <Button variant="contained" 
+                                        <Button variant="contained" size="large" sx={buttonStyle}
                                             onClick={() => start()}
                                             endIcon={<PlayArrowIcon />}
                                         >Play</Button>
@@ -94,8 +99,8 @@ export const Timer = () => {
         default:
             return  <Layout
                         header={<Navbar variant="color"/>}
-                        content={<></>}
-                        footer={<Button variant="contained" 
+                        content={<TimerTemplate></TimerTemplate>}
+                        footer={<Button variant="contained" size="large" sx={buttonStyle}
                                     onClick={() => gettingReady()}
                                     endIcon={<ReplayIcon />}
                                 >Restart</Button>}

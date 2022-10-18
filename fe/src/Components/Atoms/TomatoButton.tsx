@@ -1,7 +1,6 @@
 import {ReactComponent as TomatoColor} from "../Atoms/TomatoColor.svg"
 import {ReactComponent as TomatoPaused} from "../Atoms/TomatoPaused.svg"
-import { Button, styled } from "@mui/material";
-import { useNavigate } from 'react-router-dom'; 
+import { Button, styled, SxProps, Theme } from "@mui/material";
 
 const ColorLogoTomato = styled(TomatoColor)({
     height: "20px"
@@ -17,6 +16,7 @@ interface Props {
     type: TomatoButtonType;
     children?: React.ReactNode;
     onClick?: () => void;
+    sx?: SxProps<Theme>;
 }
 
 const InactiveTomatoStyle = {
@@ -31,7 +31,7 @@ export const TomatoButton = (props: Props) => {
 
     return <Button  variant={"outlined"}
                     size="large" 
-                    sx={props.type == "active" ? null : InactiveTomatoStyle}
+                    sx={props.type == "active" ? props.sx : {...props.sx, ...InactiveTomatoStyle}}
                     endIcon={props.type == "active" ? <ColorLogoTomato /> : <PausedLogoTomato />} 
                     onClick={() => onCLick()}>
                 {props.children}
