@@ -82,9 +82,8 @@ export const THEME = createTheme({
         root: {
           borderRadius: '12px',
           boxShadow: "0px 4px 4px 0px #00000040"
-
-        },
-      },
+        }
+      }
     },
   },
 } as any);
