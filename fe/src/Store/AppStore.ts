@@ -1,8 +1,10 @@
 import { Category } from "../Models/Category";
+import { INITIAL_TIMER_STATE } from "../Models/TimerState";
 import { ToomatoSummary } from "../Models/ToomatoSummary";
 import { CategoryStore } from "./CategoryStore";
 import { EntityStore } from "./EntityStore";
 import { SummaryStore } from "./SummaryStore";
+import { TimerStateStore } from "./TimerStateStore";
 
 
 const REACT = { id: "1", name: "React" };
@@ -32,10 +34,12 @@ let weekSummary: ToomatoSummary[] = [
     { category: ENGLISH, toomatoCount: 1}
 ];
 
+
 const AppStore = {
     categories: new CategoryStore(categories),
     todaySummary: new SummaryStore(todaySummary),
-    weekSummary: new SummaryStore(weekSummary)
+    weekSummary: new SummaryStore(weekSummary),
+    timer: new TimerStateStore(INITIAL_TIMER_STATE)
 };
 
 export const useAppStore = () => AppStore;

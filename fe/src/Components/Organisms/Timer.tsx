@@ -9,80 +9,98 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import ReplayIcon from '@mui/icons-material/Replay';
 import StopIcon from '@mui/icons-material/Stop';
 import PauseIcon from '@mui/icons-material/Pause';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button } from "@mui/material";
 import { TimerTemplate } from "../Templates/TimerTemplate";
-
-enum TimerPhase {
-    CategoryChoice,
-    ReadyToStart,
-    InProgress,
-    Completed
-}
+import { INITIAL_TIMER_STATE, TimerState } from "../../Models/TimerState";
 
 const buttonStyle = {
     width: "116px"
 }
 
 export const Timer = () => {
-    const [phase, setPhase] = useState(TimerPhase.CategoryChoice);
-    const [running, setRunning] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+    const appStore = useAppStore();
+    const [timerState, setTimerState] = useState<TimerState>({} as TimerState);
 
-    const gettingReady = () => setPhase(TimerPhase.ReadyToStart);
+    useEffect(() => {
+        let subscription = appStore.timer.subscribe((value) => setTimerState(value));
+        return () => subscription.unsubscribe();
+    }, []);
+
+
+    const reset = () => {
+        appStore.timer.change(INITIAL_TIMER_STATE);
+    };
 
     const start = () => {
-        setRunning(true);
-        setPhase(TimerPhase.InProgress);
+        appStore.timer.change({
+            running: true,
+            phase: "InProgress"
+        });
     }
 
     const stop = () => {
-        setRunning(false);
-        setPhase(TimerPhase.ReadyToStart);
+        appStore.timer.change({
+            running: false,
+            phase: "ReadyToStart"
+        });
     }
 
     const pause = () => {
-        setRunning(false);
+        appStore.timer.change({
+            running: false
+        });   
     }
 
-    useEffect(() => {
+    const gettingReady = (selectedCategory: Category | null) => {
         if (selectedCategory != null) {
             setTimeout(() => {
-                gettingReady();
-                setRunning(false);
+                let changes: Partial<TimerState> = {
+                    category: selectedCategory,
+                    phase: "ReadyToStart",
+                    running: true
+                };
+                appStore.timer.change(changes);   
             }, 250);
         }
-    }, [selectedCategory]);  
+    };
 
-    switch (phase) {
-        case TimerPhase.CategoryChoice:
+    switch (timerState.phase) {
+        case "CategoryChoice":
             return  <Layout
                         header={<Navbar variant="color"/>}
-                        content={<CategoryChoice onChange={category => setSelectedCategory(category)}/>}
+                        content={<CategoryChoice onChange={category => gettingReady(category)}/>}
                         footer={<></>}
                     />;
-        case TimerPhase.ReadyToStart:
+        case "ReadyToStart":
             return  <Layout
                         header={<Navbar variant="color"/>}
                         content={<TimerTemplate>
                                     <BigTomato variant="inactive"/>
                                 </TimerTemplate>}
-                        footer={<Button variant="contained" size="large" sx={buttonStyle}
-                                    onClick={() => start()}
-                                    endIcon={<PlayArrowIcon />}
-                                >Play</Button>}
+                        footer={<>
+                                    <Button variant="outlined" size="large" sx={buttonStyle}
+                                        onClick={() => reset()}
+                                        endIcon={<ArrowBackIcon />}
+                                    >Reset</Button>
+                                    <Button variant="contained" size="large" sx={buttonStyle}
+                                        onClick={() => start()}
+                                        endIcon={<PlayArrowIcon />}
+                                    >Play</Button>
+                                </>}
                     />;
-        case TimerPhase.InProgress:
+        case "InProgress":
             return  <Layout
-                        header={<Navbar variant={running ? "color" : "paused"}/>}
+                        header={<Navbar variant={timerState.running ? "color" : "paused"}/>}
                         content={<TimerTemplate>
-                                    <BigTomato variant={running ? "color" : "paused"}/>
+                                    <BigTomato variant={timerState.running ? "color" : "paused"}/>
                                 </TimerTemplate>}
                         footer={<>
                                     <Button variant="outlined" size="large" sx={buttonStyle}
                                         onClick={() => stop()}
                                         endIcon={<StopIcon />}
                                     >Stop</Button>
-                                    {running ? 
+                                    {timerState.running ? 
                                         <Button variant="outlined" size="large" sx={buttonStyle}
                                             onClick={() => pause()}
                                             endIcon={<PauseIcon />}
@@ -95,13 +113,13 @@ export const Timer = () => {
                                     }
                                 </>}
                     />
-        case TimerPhase.Completed:
+        case "Completed":
         default:
             return  <Layout
                         header={<Navbar variant="color"/>}
                         content={<TimerTemplate></TimerTemplate>}
                         footer={<Button variant="contained" size="large" sx={buttonStyle}
-                                    onClick={() => gettingReady()}
+                                    onClick={() => gettingReady(null)}
                                     endIcon={<ReplayIcon />}
                                 >Restart</Button>}
                     />;

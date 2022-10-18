@@ -4,8 +4,8 @@ import React from "react";
 const boxStyle = {
     paddingTop: "64px",
     display: "flex",
-    "flex-direction": "column",
-    "align-items": "center",
+    flexDirection: "column",
+    alignItems: "center",
     gap: "70px"
 }
 
