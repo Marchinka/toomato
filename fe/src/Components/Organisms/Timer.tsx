@@ -13,6 +13,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button } from "@mui/material";
 import { TimerTemplate } from "../Templates/TimerTemplate";
 import { INITIAL_TIMER_STATE, TimerState } from "../../Models/TimerState";
+import { Clock } from "../Molecules/Clock";
+import { DEFAULT_TOMATO_LENGTH_IN_SECONDS } from "../../Utils/Constants";
 
 const buttonStyle = {
     width: "116px"
@@ -145,10 +147,17 @@ export const InProgressStep = () => {
         });   
     }
 
+    const onEnd = () => {
+
+    };
+
     return  <Layout
                 header={<Navbar variant={timerState.running ? "color" : "paused"}/>}
                 content={<TimerTemplate>
                             <BigTomato variant={timerState.running ? "color" : "paused"}/>
+                            <Clock  elapsedSeconds={timerState.elapsedSeconds} 
+                                    maxDuration={DEFAULT_TOMATO_LENGTH_IN_SECONDS}
+                                    onEnd={() => onEnd()}/>
                         </TimerTemplate>}
                 footer={<>
                             <Button variant="outlined" size="large" sx={buttonStyle}
