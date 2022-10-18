@@ -9,6 +9,7 @@ export class TimerStateStore extends EntityStore<TimerState> {
             ...this.subject.value,
             ...values
         }
+        console.log("timer state", newState);
         this.next(newState);
     }
 }

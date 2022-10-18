@@ -16,43 +16,43 @@ declare module '@mui/material/styles' {
   }
 }
 
-const TITLE_FONT = "'PT Serif', serif;";
-const BODY_FONT = "'Lato', sans-serif;";
+const PT_SERIF_FONT = "'PT Serif', serif;";
+const LATO_FONT = "'Lato', sans-serif;";
 
 export const THEME = createTheme({
   typography: {
-    fontFamily: BODY_FONT,
+    fontFamily: LATO_FONT,
     h1: {
       color: NEUTRALS.B900,
-      fontFamily: TITLE_FONT
+      fontFamily: LATO_FONT
     },
     h2: {
       color: NEUTRALS.B900,
-      fontFamily: TITLE_FONT
+      fontFamily: LATO_FONT
     },
     h3: {
       color: NEUTRALS.B700,
-      fontFamily: TITLE_FONT
+      fontFamily: LATO_FONT
     },
     h4: {
       color: NEUTRALS.B700,
-      fontFamily: TITLE_FONT
+      fontFamily: LATO_FONT
     },
     h5: {
       color: NEUTRALS.B700,
-      fontFamily: BODY_FONT
+      fontFamily: LATO_FONT
     },
     h6: {
       color: NEUTRALS.B600,
-      fontFamily: BODY_FONT
+      fontFamily: LATO_FONT
     },
     body1: {
       color: NEUTRALS.B900,
-      fontFamily: BODY_FONT
+      fontFamily: LATO_FONT
     },
     body2: {
       color: NEUTRALS.B600,
-      fontFamily: BODY_FONT
+      fontFamily: LATO_FONT
     },
   },
   palette: {

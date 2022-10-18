@@ -1,1 +1,1 @@
-export const DEFAULT_TOMATO_LENGTH_IN_SECONDS = 5 * 60; // 25 minutes
+export const DEFAULT_TOMATO_LENGTH_IN_SECONDS = 1 * 20; // 25 minutes

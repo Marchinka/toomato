@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 
 const boxStyle = {
-    paddingTop: "64px",
+    paddingTop: "32px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
