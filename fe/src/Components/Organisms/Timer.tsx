@@ -37,8 +37,6 @@ export const Timer = () => {
     switch (timerState.phase) {
         case "CategoryChoice":
             return <CategoryChoiceStep />
-        case "ReadyToStart":
-            return <ReadyToStartStep />
         case "InProgress":
             return <InProgressStep />
         case "Completed":
@@ -61,8 +59,9 @@ export const CategoryChoiceStep = () => {
             setTimeout(() => {
                 let changes: Partial<TimerState> = {
                     category: selectedCategory,
-                    phase: "ReadyToStart",
-                    running: true,
+                    phase: "InProgress",
+                    started: false,
+                    running: false,
                     elapsedSeconds: 0
                 };
                 appStore.timer.change(changes);   
@@ -76,57 +75,6 @@ export const CategoryChoiceStep = () => {
                 footer={<></>}
             />;
 };
-
-
-export const ReadyToStartStep = () => {
-    const appStore = useAppStore();
-    const [timerState, setTimerState] = useState<TimerState>({} as TimerState);
-
-    useEffect(() => {
-        let subscription = appStore.timer.subscribe((value) => setTimerState(value));
-        return () => subscription.unsubscribe();
-    }, []);
-
-    const reset = () => {
-        appStore.timer.change(INITIAL_TIMER_STATE);
-    };
-
-    const start = () => {
-        appStore.timer.change({
-            running: true,
-            phase: "InProgress",
-            elapsedSeconds: 0
-        });
-    }
-
-    const categoryButtonStyle = {
-        width: "100%",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center"
-    };
-
-    return  <Layout
-                header={<Navbar variant="color"/>}
-                content={<TimerTemplate>
-                            <TomatoButton type="active" onClick={() => reset()} sx={categoryButtonStyle}>
-                                {timerState.category?.name}
-                            </TomatoButton>
-                            <BigTomato variant="inactive"/>
-                        </TimerTemplate>}
-                footer={<>
-                            <Button variant="outlined" size="large" sx={buttonStyle}
-                                onClick={() => reset()}
-                                endIcon={<ArrowBackIcon />}
-                            >Reset</Button>
-                            <Button variant="contained" size="large" sx={buttonStyle}
-                                onClick={() => start()}
-                                endIcon={<PlayArrowIcon />}
-                            >Play</Button>
-                        </>}
-            />;
-};
-
 
 export const InProgressStep = () => {
     const appStore = useAppStore();
@@ -155,30 +103,41 @@ export const InProgressStep = () => {
         }
     }, [timerState]);
 
-    const start = () => {
+    const play = () => {
         appStore.timer.change({
             running: true,
-            phase: "InProgress"
+            started: true
         });
     }
 
     const stop = () => {
         appStore.timer.change({
             running: false,
-            phase: "ReadyToStart",
+            started: false,
+            phase: "InProgress",
             elapsedSeconds: 0
         });
     }
 
+    const reset = () => {
+        appStore.timer.change({
+            phase: "CategoryChoice",
+            running: false,
+            started: false
+        });   
+    }
+
     const pause = () => {
         appStore.timer.change({
-            running: false
+            running: false,
+            started: true
         });   
     }
 
     const onEnd = () => {
         appStore.timer.change({
             running: false,
+            started: false,
             phase: "Completed",
             elapsedSeconds: 0
         });
@@ -191,19 +150,26 @@ export const InProgressStep = () => {
         alignItems: "center"
     };
 
-    return  <Layout
-                header={<Navbar variant={timerState.running ? "color" : "paused"}/>}
-                content={<TimerTemplate>
-                            <TomatoButton type={timerState.running ? "active" : "inactive"} 
-                                        onClick={() => pause()} sx={categoryButtonStyle}>
-                                {timerState.category?.name}
-                            </TomatoButton>
-                            <BigTomato variant={timerState.running ? "color" : "paused"}/>
-                            <Clock  elapsedSeconds={timerState.elapsedSeconds} 
-                                    maxDuration={DEFAULT_TOMATO_LENGTH_IN_SECONDS}
-                                    onEnd={() => onEnd()}/>
-                        </TimerTemplate>}
-                footer={<>
+    const getBigTomatoVariant = () => {
+        if (timerState.started) {
+            return timerState.running ? "color" : "paused";
+        } else {
+            return "inactive";
+        }
+    };
+
+    const GettingReadyButtons = <>
+                                    <Button variant="outlined" size="large" sx={buttonStyle}
+                                        onClick={() => reset()}
+                                        endIcon={<ArrowBackIcon />}
+                                    >Reset</Button>
+                                    <Button variant="contained" size="large" sx={buttonStyle}
+                                        onClick={() => play()}
+                                        endIcon={<PlayArrowIcon />}
+                                    >Play</Button>
+                                </>
+
+    const RunningButtons = <>
                             <Button variant="outlined" size="large" sx={buttonStyle}
                                 onClick={() => stop()}
                                 endIcon={<StopIcon />}
@@ -215,11 +181,25 @@ export const InProgressStep = () => {
                                 >Pause</Button>
                                 :
                                 <Button variant="contained" size="large" sx={buttonStyle}
-                                    onClick={() => start()}
+                                    onClick={() => play()}
                                     endIcon={<PlayArrowIcon />}
                                 >Play</Button>
                             }
-                        </>}
+                        </>
+
+    return  <Layout
+                header={<Navbar variant={timerState.running ? "color" : "paused"}/>}
+                content={<TimerTemplate>
+                            <TomatoButton type={timerState.running ? "active" : "inactive"} 
+                                        onClick={() => pause()} sx={categoryButtonStyle}>
+                                {timerState.category?.name}
+                            </TomatoButton>
+                            <BigTomato variant={getBigTomatoVariant()}/>
+                            {timerState.running && <Clock  elapsedSeconds={timerState.elapsedSeconds} 
+                                    maxDuration={DEFAULT_TOMATO_LENGTH_IN_SECONDS}
+                                    onEnd={() => onEnd()}/>}
+                        </TimerTemplate>}
+                footer={timerState.started ? RunningButtons : GettingReadyButtons}
             />
 };
 
@@ -236,7 +216,8 @@ export const CompletedStep = () => {
     const restart = () => {
         appStore.timer.change({
             running: false,
-            phase: "ReadyToStart",
+            started: false,
+            phase: "InProgress",
             elapsedSeconds: 0
         });
     };
