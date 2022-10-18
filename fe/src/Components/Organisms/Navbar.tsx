@@ -14,14 +14,16 @@ const style: SxProps<Theme> = {
     borderBottom: `1px solid ${NEUTRALS.B400}`
 }
 
-export const Navbar = () => {
+type NavbarVariant = "color" | "paused";
+
+export const Navbar = (props: { variant: NavbarVariant }) => {
     let navigate = useNavigate();
 
     return <Box sx={style}>
                     <IconButton size="large" onClick={() => navigate(-1)}>
                         <ArrowBackIcon fontSize="large" />
                     </IconButton>
-                    <ToomatoLogo />
+                    <ToomatoLogo variant={props.variant}/>
                     <IconButton size="large">
                         <AccountCircleIcon  fontSize="large" />
                     </IconButton>

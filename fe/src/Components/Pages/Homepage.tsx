@@ -14,7 +14,7 @@ export const Homepage = () => {
     let navigate = useNavigate();
 
     return <Layout
-                header={<Navbar/>}
+                header={<Navbar variant="color"/>}
                 content={<HomeSummary/>}
                 footer={<TomatoButton type="active" onClick={() => navigate("/timer")}>
                             New Tomato

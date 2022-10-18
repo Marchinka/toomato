@@ -11,14 +11,14 @@ const PausedLogoTomato = styled(TomatoPaused)({
     height: "200px"
 });
 
-const InactiveLogoTomato = styled(TomatoPaused)({
+const InactiveLogoTomato = styled(TomatoInactive)({
     height: "200px"
 });
 
 type BigTomatoType = "color" | "paused" | "inactive";
 
-export const BigTomato = (props: { type: BigTomatoType }) => {
-    switch (props.type) {
+export const BigTomato = (props: { variant: BigTomatoType }) => {
+    switch (props.variant) {
         case "color":
             return <ColorLogoTomato />
         case "paused":
